@@ -47,9 +47,8 @@ jobs:
     for exe in $(echo $EXECUTABLES); do
     if [! -x "$exe"]; then
     echo "execution is fail"
-    run: exit 1
+    exit 1
     fi
-    done
 
   run_tests:
     needs: check_program_compilation
