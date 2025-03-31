@@ -40,8 +40,8 @@ jobs:
       - uses: actions/checkout@v4
       - name: check the compilation
       - run: |
-      make
       timeout 120
+      make
       make clean
       - name: control executable
     for exe in $(echo $EXECUTABLES); do
