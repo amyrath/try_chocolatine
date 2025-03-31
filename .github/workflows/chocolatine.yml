@@ -43,6 +43,7 @@ jobs:
       - name: clean the repot
       - run: make clean
       - name: control executable
+       run: |
     for exe in $(echo $EXECUTABLES); do
     if [! -x "$exe"]; then
     echo "execution is fail"
