@@ -39,9 +39,9 @@ jobs:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: check the compilation
-      - run: |
-      timeout 120 make
-      make clean
+      - run: timeout 120 make
+      - name: clean the repot
+      - run: make clean
       - name: control executable
     for exe in $(echo $EXECUTABLES); do
     if [! -x "$exe"]; then
