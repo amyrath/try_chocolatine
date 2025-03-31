@@ -44,11 +44,11 @@ jobs:
       - run: make clean
       - name: control executable
        run: |
-    for exe in $(echo $EXECUTABLES); do
-    if [! -x "$exe"]; then
-    echo "execution is fail"
-    exit 1
-    fi
+         for exe in $(echo $EXECUTABLES); do
+         if [! -x "$exe"]; then
+         echo "execution is fail"
+         exit 1
+         fi
 
   run_tests:
     needs: check_program_compilation
