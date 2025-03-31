@@ -1,0 +1,81 @@
+name: chocolatine
+run-name: ${{ github.actor }} is the project chocolatine
+on:
+   push:
+     branches:
+       - '**'
+       - ! 'ga-ignore-**'
+   pull request:
+     branches:
+       - '**'
+       - ! 'ga-ignore-**'
+
+env:
+  MIRROR_URL: https://github.com/EpitechPGEPromo2029/B-DOP-200-COT-2-1-chocolatine-amyrath.chakran.git
+  EXECUTABLES: directory1/executableA,directory2/executableB
+
+jobs:
+  check_coding_style:
+  Explore-GitHub-Actions:
+  runs-on: ubuntu-latest
+  container: ghcr.io/epitech/coding-style-checker:latest
+  steps:
+    - name: the checkout base
+    - uses: actions/checkout@v4
+    - name: chech coding style
+    - run: |
+        check.sh $(pwd) $(pwd)
+        if [coding-style-reports.log]; then
+          cat coding-style-reports.log
+          exit 1
+        fi
+
+  check_program_compilation: 
+    needs: check_coding_style
+    Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+      - name: the checkout base
+      - uses: actions/checkout@v4
+      - name: check the compilation
+      - run: |
+      make
+      timeout 120
+      make clean
+      - name: control executable
+    for exe in $(echo $EXECUTABLES); do
+    if [! -x "$exe"]; then
+    echo "execution is fail"
+    run: exit 1
+    fi
+
+  run_tests:
+    needs: check_program_compilation
+    Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
+       - name: the checkout base
+       - uses: actions/checkout@v4
+       - name: check the unit tests
+       - run: |
+       make tests_run
+       timeout 120
+       exit 1
+
+  push_to_mirror:
+    needs: run_tests
+    Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: the checkout base
+      - uses: actions/checkout@v4
+      - name: create the key
+      -run: |
+    mkdir ~/.ssh
+    echo "$GIT_SSH_PRIVATE_KEY" > ~/.ssh/stock
+    chmod 600 ~/.ssh/stock
+    - name: push in mirror
+    git remote add mirror "$MIRROR_URL"
+    git push --mirror mirror
