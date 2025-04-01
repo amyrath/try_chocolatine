@@ -70,6 +70,3 @@ jobs:
           mkdir ~/.ssh
           echo "$GIT_SSH_PRIVATE_KEY" > ~/.ssh/stock
           chmod 600 ~/.ssh/stock
-#      - name: push in mirror
-              #git remote add mirror "$MIRROR_URL"
-              #git push --mirror mirror
