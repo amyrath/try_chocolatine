@@ -43,6 +43,8 @@ jobs:
             if [! -x "$exe"]; then
               echo "execution is fail"
               exit 1
+            else
+              echo "$executable is working"
             fi
   run_tests:
     needs: check_program_compilation
