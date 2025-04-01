@@ -57,8 +57,7 @@ jobs:
        - name: the checkout base
          uses: actions/checkout@v4
        - name: check the unit tests
-         run: |
-          make tests_run
+         run: make tests_run
           exit 1
          timeout-minutes: 2
   push_to_mirror:
