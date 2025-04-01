@@ -29,12 +29,13 @@ jobs:
           cat coding-style-reports.log
           exit 1
         fi
-        check_program_compilation:
-    needs: check_coding_style
-    Explore-GitHub-Actions:
-    runs-on: ubuntu-latest
-    container: epitechcontent/epitest-docker
-    steps:
+
+  check_program_compilation:
+  needs: check_coding_style
+  Explore-GitHub-Actions:
+  runs-on: ubuntu-latest
+  container: epitechcontent/epitest-docker
+  steps:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: check the compilation
