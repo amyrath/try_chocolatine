@@ -35,7 +35,7 @@ jobs:
   Explore-GitHub-Actions:
   runs-on: ubuntu-latest
   container: epitechcontent/epitest-docker
-  steps:
+    steps:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: check the compilation
