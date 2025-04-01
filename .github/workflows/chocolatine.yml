@@ -14,31 +14,31 @@ env:
 
 jobs:
   check_coding_style:
-  Explore-GitHub-Actions:
-  runs-on: ubuntu-latest
-  container: ghcr.io/epitech/coding-style-checker:latest
-  steps:
-    - name: the checkout base
-    - uses: actions/checkout@v4
-    - name: chech coding style
-    - run: |
-        check.sh $(pwd) $(pwd)
-        if [coding-style-reports.log]; then
+    Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    container: ghcr.io/epitech/coding-style-checker:latest
+    steps:
+      - name: the checkout base
+      - uses: actions/checkout@v4
+      - name: chech coding style
+      - run: |
+          check.sh $(pwd) $(pwd)
+          if [coding-style-reports.log]; then
           cat coding-style-reports.log
           exit 1
-        fi
+          fi
   check_program_compilation:
-  needs: check_coding_style
-  Explore-GitHub-Actions:
-  runs-on: ubuntu-latest
-  container: epitechcontent/epitest-docker
-  steps:
+    needs: check_coding_style
+    Explore-GitHub-Actions:
+    runs-on: ubuntu-latest
+    container: epitechcontent/epitest-docker
+    steps:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: check the compilation
       - run: make
       - timeout-minutes: 2
-  steps:
+    steps:
       - name: clean the repot
       - run: make clean
       - name: control executable
@@ -48,7 +48,6 @@ jobs:
          echo "execution is fail"
          exit 1
          fi
-
   run_tests:
     needs: check_program_compilation
     Explore-GitHub-Actions:
@@ -62,7 +61,6 @@ jobs:
           make tests_run
           timeout 120
           exit 1
-
   push_to_mirror:
     needs: run_tests
     Explore-GitHub-Actions:
@@ -71,11 +69,10 @@ jobs:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: create the key
-        -run: |
+      - run: |
           mkdir ~/.ssh
           echo "$GIT_SSH_PRIVATE_KEY" > ~/.ssh/stock
           chmod 600 ~/.ssh/stock
       - name: push in mirror
           git remote add mirror "$MIRROR_URL"
           git push --mirror mirror
-  
