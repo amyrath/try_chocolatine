@@ -2,17 +2,15 @@ name: chocolatine
 run-name: ${{ github.actor }} is the project chocolatine
 on:
    push:
-     branches:
-       - '**'
-       - ! 'ga-ignore-**'
-   pull request:
-     branches:
-       - '**'
-       - ! 'ga-ignore-**'
+     branches-ignore:
+       - ! 'ga-ignore-*'
+   pull_request:
+     branches-ignore:
+       - ! 'ga-ignore-*'
 
 env:
-  MIRROR_URL: https://github.com/EpitechPGEPromo2029/B-DOP-200-COT-2-1-chocolatine-amyrath.chakran.git
-  EXECUTABLES: directory1/executableA,directory2/executableB
+  MIRROR_URL: git@github.com:amyrath/try_chocolatine.git
+  EXECUTABLES: mysh
 
 jobs:
   check_coding_style:
@@ -39,7 +37,9 @@ jobs:
       - name: the checkout base
       - uses: actions/checkout@v4
       - name: check the compilation
-      - run: timeout 120 make
+      - run: make
+      - timeout-minutes: 2
+   steps:
       - name: clean the repot
       - run: make clean
       - name: control executable
