@@ -14,3 +14,8 @@ int my_strlen(char *str)
     for (; str[y] != '\0'; y++);
     return y;
 }
+
+int main(int ac, char **av, char **env)
+{
+    return 0;
+}
