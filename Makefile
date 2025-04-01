@@ -9,8 +9,7 @@ SRC	=	*.c
 
 NAME	=	mysh
 
-SRCC	=	src/my_strlen.c\
-		src/my_strdup.c
+SRCC	=	my_strlen.c
 
 all:
 	gcc -o $(NAME) $(SRC) -g3
