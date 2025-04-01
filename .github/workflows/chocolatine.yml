@@ -8,7 +8,7 @@ on:
     branches-ignore:
        - ! 'ga-ignore-*'
 env:
-  MIRROR_URL: git@github.com:EpitechPGEPromo2029/B-DOP-200-COT-2-1-chocolatine-amyrath.chakran.git
+  MIRROR_URL: git@github.com:amyrath/try_chocolatine.git
   EXECUTABLES: mysh
 jobs:
   check_coding_style:
