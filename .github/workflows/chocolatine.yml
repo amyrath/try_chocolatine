@@ -100,10 +100,9 @@ jobs:
         uses: actions/checkout@v4
       - name: Verify compiled libraries
         run: |
-          for lib in "${env.LIBRARIES}"; do
+          for lib in ${{ env.LIBRARIES }}; do
             if [ ! -f "$lib" ]; then
               echo "include file=$lib"
               exit 1
             fi
           done
-         ## IFS=',' read -ra LIBS <<< ${{ env.LIBRARIES }}
