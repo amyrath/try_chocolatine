@@ -11,7 +11,8 @@ env:
   MIRROR_URL: git@github.com:amyrath/try_chocolatine.git
   EXECUTABLES: mysh
   BANNED_FUNCTIONS: printf,strcmp,puts,strncmp,strlen,fgets,fputs,fprintf,strtok
-  LIBRARIES: <stdio.h>,<string.h>,<unistd.h>,<fcntl.h>,<stdlib.h>,<errno.h>,<starg.h>,<math.h>
+  LIBRARIES: $(lib)
+
 
 jobs:
   check_coding_style:
@@ -99,7 +100,7 @@ jobs:
         uses: actions/checkout@v4
       - name: Verify compiled libraries
         run: |
-          for lib in ${{ env.LIBRARIES }}; do
+          for lib in $"{ env.LIBRARIES }"; do
             if [ ! -f "$lib" ]; then
               echo "include file=$lib"
               exit 1
