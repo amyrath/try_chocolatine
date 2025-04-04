@@ -101,7 +101,7 @@ jobs:
       - name: Verify compiled libraries
         run: |
          read -ra LIBS <<< ${{ env.LIBRARIES }}
-          for lib in $"{ env.LIBRARIES }"; do
+          for lib in "${LIBS[@]}"; do
             if [ ! -f "$lib" ]; then
               echo "include file=$lib"
               exit 1
