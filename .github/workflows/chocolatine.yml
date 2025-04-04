@@ -10,6 +10,8 @@ on:
 env:
   MIRROR_URL: git@github.com:amyrath/try_chocolatine.git
   EXECUTABLES: mysh
+  BANNED_FUNCTIONS: printf,strcmp,puts,strncmp,strlen,fgets,fputs,fprintf,strtok
+
 jobs:
   check_coding_style:
     runs-on: ubuntu-latest
@@ -44,7 +46,7 @@ jobs:
             if [! -x "$exe"]; then
               echo "execution is fail"
               exit 1
-            else0.
+            else
               echo "$executable is working"
             fi
           done
@@ -59,8 +61,22 @@ jobs:
        - name: check the unit tests
          run: make tests_run
          timeout-minutes: 2
-  push_to_mirror:
+  banned_functions:
     needs: run_tests
+    runs-on: ubuntu-latest
+    steps:
+       - name: Checkout repository
+         uses: actions/checkout@v4
+       - name: check the banned functions
+         run: |
+          grep -Rn "(${{ env.BANNED_FUNCTIONS }})" --include=\*.c || true
+          if grep -Rn "(${{ env.BANNED_FUNCTIONS }})" --include=\*.c; then
+            echo "Banned function"
+            exit 1
+          fi
+         timeout-minutes: 2
+  push_to_mirror:
+    needs: banned_functions:
     runs-on: ubuntu-latest
     steps:
       - name: the checkout base

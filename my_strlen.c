@@ -5,6 +5,8 @@
 ** my_strlen
 */
 
+#include <stdio.h>
+
 int my_strlen(char *str)
 {
     int y = 0;
@@ -17,5 +19,7 @@ int my_strlen(char *str)
 
 int main(int ac, char **av, char **env)
 {
+    int y = my_strlen("papa");
+    printf("%d", y);
     return 0;
 }
