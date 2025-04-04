@@ -76,7 +76,7 @@ jobs:
           fi
          timeout-minutes: 2
   push_to_mirror:
-    needs: banned_functions:
+    needs: banned_functions
     runs-on: ubuntu-latest
     steps:
       - name: the checkout base
