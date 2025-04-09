@@ -44,7 +44,6 @@ jobs:
         run: make clean
       - name: control executable
         run: |
-          bash -c '
           for exe in $(echo $EXECUTABLES); do
             if [! -x "$exe"]; then
               echo "execution is fail"
@@ -53,7 +52,6 @@ jobs:
               echo "$executable is working"
             fi
           done
-          '
 
   run_tests:
     needs: check_program_compilation
