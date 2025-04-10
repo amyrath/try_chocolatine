@@ -17,9 +17,10 @@ int my_strlen(char *str)
     return y;
 }
 
-int main(int ac, char **av, char **env)
+/*int main(int ac, char **av, char **env)
 {
     int y = my_strlen("papa");
     printf("%d", y);
     return 0;
 }
+*/
