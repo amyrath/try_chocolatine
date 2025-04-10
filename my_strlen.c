@@ -11,7 +11,7 @@ int my_strlen(char *str)
 {
     int y = 0;
 
-    if (!str)
+       if (!str)
         return -1;
     for (; str[y] != '\0'; y++);
     return y;

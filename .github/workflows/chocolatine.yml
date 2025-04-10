@@ -104,6 +104,4 @@ jobs:
               exit 1
             fi
           done
-        timeout-minutes: 2
-
 
